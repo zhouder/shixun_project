@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shixun.cb09.mapper.TestReportCb09Mapper">
+    
+    <resultMap type="TestReportCb09" id="TestReportCb09Result">
+        <result property="id"    column="id"    />
+        <result property="testOrgName"    column="test_org_name"    />
+        <result property="reportNo"    column="report_no"    />
+        <result property="projectName"    column="project_name"    />
+        <result property="contractArea"    column="contract_area"    />
+        <result property="constructionOrgName"    column="construction_org_name"    />
+        <result property="supervisorOrgName"    column="supervisor_org_name"    />
+        <result property="projectPartAndPurpose"    column="project_part_and_purpose"    />
+        <result property="sampleInfo"    column="sample_info"    />
+        <result property="testingBasis"    column="testing_basis"    />
+        <result property="judgmentCriteria"    column="judgment_criteria"    />
+        <result property="equipmentNameAndNo"    column="equipment_name_and_no"    />
+        <result property="mixProportionNo"    column="mix_proportion_no"    />
+        <result property="impermeabilityLevel"    column="impermeability_level"    />
+        <result property="designStrength"    column="design_strength"    />
+        <result property="stirType"    column="stir_type"    />
+        <result property="formingDate"    column="forming_date"    />
+        <result property="slumpsValue"    column="slumps_value"    />
+        <result property="maintainType"    column="maintain_type"    />
+        <result property="ageValue"    column="age_value"    />
+        <result property="testDate"    column="test_date"    />
+        <result property="teamNo"    column="team_no"    />
+        <result property="testStopWaterPressure"    column="test_stop_water_pressure"    />
+        <result property="testStopSeepagePartNum"    column="test_stop_seepage_part_num"    />
+        <result property="testStrength"    column="test_strength"    />
+        <result property="result"    column="result"    />
+        <result property="additionalStatement"    column="additional_statement"    />
+        <result property="testPerson"    column="test_person"    />
+        <result property="examinePerson"    column="examine_person"    />
+        <result property="approvePerson"    column="approve_person"    />
+        <result property="reportDate"    column="report_date"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectTestReportCb09Vo">
+        select id, test_org_name, report_no, project_name, contract_area, construction_org_name, supervisor_org_name, project_part_and_purpose, sample_info, testing_basis, judgment_criteria, equipment_name_and_no, mix_proportion_no, impermeability_level, design_strength, stir_type, forming_date, slumps_value, maintain_type, age_value, test_date, team_no, test_stop_water_pressure, test_stop_seepage_part_num, test_strength, result, additional_statement, test_person, examine_person, approve_person, report_date, create_time, update_time from test_report_cb09
+    </sql>
+
+    <select id="selectTestReportCb09List" parameterType="TestReportCb09" resultMap="TestReportCb09Result">
+        <include refid="selectTestReportCb09Vo"/>
+        <where>  
+            <if test="testOrgName != null  and testOrgName != ''"> and test_org_name like concat('%', #{testOrgName}, '%')</if>
+            <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectTestReportCb09ById" parameterType="Long" resultMap="TestReportCb09Result">
+        <include refid="selectTestReportCb09Vo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTestReportCb09" parameterType="TestReportCb09" useGeneratedKeys="true" keyProperty="id">
+        insert into test_report_cb09
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="testOrgName != null">test_org_name,</if>
+            <if test="reportNo != null">report_no,</if>
+            <if test="projectName != null">project_name,</if>
+            <if test="contractArea != null">contract_area,</if>
+            <if test="constructionOrgName != null">construction_org_name,</if>
+            <if test="supervisorOrgName != null">supervisor_org_name,</if>
+            <if test="projectPartAndPurpose != null">project_part_and_purpose,</if>
+            <if test="sampleInfo != null">sample_info,</if>
+            <if test="testingBasis != null">testing_basis,</if>
+            <if test="judgmentCriteria != null">judgment_criteria,</if>
+            <if test="equipmentNameAndNo != null">equipment_name_and_no,</if>
+            <if test="mixProportionNo != null">mix_proportion_no,</if>
+            <if test="impermeabilityLevel != null">impermeability_level,</if>
+            <if test="designStrength != null">design_strength,</if>
+            <if test="stirType != null">stir_type,</if>
+            <if test="formingDate != null">forming_date,</if>
+            <if test="slumpsValue != null">slumps_value,</if>
+            <if test="maintainType != null">maintain_type,</if>
+            <if test="ageValue != null">age_value,</if>
+            <if test="testDate != null">test_date,</if>
+            <if test="teamNo != null">team_no,</if>
+            <if test="testStopWaterPressure != null">test_stop_water_pressure,</if>
+            <if test="testStopSeepagePartNum != null">test_stop_seepage_part_num,</if>
+            <if test="testStrength != null">test_strength,</if>
+            <if test="result != null">result,</if>
+            <if test="additionalStatement != null">additional_statement,</if>
+            <if test="testPerson != null">test_person,</if>
+            <if test="examinePerson != null">examine_person,</if>
+            <if test="approvePerson != null">approve_person,</if>
+            <if test="reportDate != null">report_date,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="testOrgName != null">#{testOrgName},</if>
+            <if test="reportNo != null">#{reportNo},</if>
+            <if test="projectName != null">#{projectName},</if>
+            <if test="contractArea != null">#{contractArea},</if>
+            <if test="constructionOrgName != null">#{constructionOrgName},</if>
+            <if test="supervisorOrgName != null">#{supervisorOrgName},</if>
+            <if test="projectPartAndPurpose != null">#{projectPartAndPurpose},</if>
+            <if test="sampleInfo != null">#{sampleInfo},</if>
+            <if test="testingBasis != null">#{testingBasis},</if>
+            <if test="judgmentCriteria != null">#{judgmentCriteria},</if>
+            <if test="equipmentNameAndNo != null">#{equipmentNameAndNo},</if>
+            <if test="mixProportionNo != null">#{mixProportionNo},</if>
+            <if test="impermeabilityLevel != null">#{impermeabilityLevel},</if>
+            <if test="designStrength != null">#{designStrength},</if>
+            <if test="stirType != null">#{stirType},</if>
+            <if test="formingDate != null">#{formingDate},</if>
+            <if test="slumpsValue != null">#{slumpsValue},</if>
+            <if test="maintainType != null">#{maintainType},</if>
+            <if test="ageValue != null">#{ageValue},</if>
+            <if test="testDate != null">#{testDate},</if>
+            <if test="teamNo != null">#{teamNo},</if>
+            <if test="testStopWaterPressure != null">#{testStopWaterPressure},</if>
+            <if test="testStopSeepagePartNum != null">#{testStopSeepagePartNum},</if>
+            <if test="testStrength != null">#{testStrength},</if>
+            <if test="result != null">#{result},</if>
+            <if test="additionalStatement != null">#{additionalStatement},</if>
+            <if test="testPerson != null">#{testPerson},</if>
+            <if test="examinePerson != null">#{examinePerson},</if>
+            <if test="approvePerson != null">#{approvePerson},</if>
+            <if test="reportDate != null">#{reportDate},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTestReportCb09" parameterType="TestReportCb09">
+        update test_report_cb09
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="testOrgName != null">test_org_name = #{testOrgName},</if>
+            <if test="reportNo != null">report_no = #{reportNo},</if>
+            <if test="projectName != null">project_name = #{projectName},</if>
+            <if test="contractArea != null">contract_area = #{contractArea},</if>
+            <if test="constructionOrgName != null">construction_org_name = #{constructionOrgName},</if>
+            <if test="supervisorOrgName != null">supervisor_org_name = #{supervisorOrgName},</if>
+            <if test="projectPartAndPurpose != null">project_part_and_purpose = #{projectPartAndPurpose},</if>
+            <if test="sampleInfo != null">sample_info = #{sampleInfo},</if>
+            <if test="testingBasis != null">testing_basis = #{testingBasis},</if>
+            <if test="judgmentCriteria != null">judgment_criteria = #{judgmentCriteria},</if>
+            <if test="equipmentNameAndNo != null">equipment_name_and_no = #{equipmentNameAndNo},</if>
+            <if test="mixProportionNo != null">mix_proportion_no = #{mixProportionNo},</if>
+            <if test="impermeabilityLevel != null">impermeability_level = #{impermeabilityLevel},</if>
+            <if test="designStrength != null">design_strength = #{designStrength},</if>
+            <if test="stirType != null">stir_type = #{stirType},</if>
+            <if test="formingDate != null">forming_date = #{formingDate},</if>
+            <if test="slumpsValue != null">slumps_value = #{slumpsValue},</if>
+            <if test="maintainType != null">maintain_type = #{maintainType},</if>
+            <if test="ageValue != null">age_value = #{ageValue},</if>
+            <if test="testDate != null">test_date = #{testDate},</if>
+            <if test="teamNo != null">team_no = #{teamNo},</if>
+            <if test="testStopWaterPressure != null">test_stop_water_pressure = #{testStopWaterPressure},</if>
+            <if test="testStopSeepagePartNum != null">test_stop_seepage_part_num = #{testStopSeepagePartNum},</if>
+            <if test="testStrength != null">test_strength = #{testStrength},</if>
+            <if test="result != null">result = #{result},</if>
+            <if test="additionalStatement != null">additional_statement = #{additionalStatement},</if>
+            <if test="testPerson != null">test_person = #{testPerson},</if>
+            <if test="examinePerson != null">examine_person = #{examinePerson},</if>
+            <if test="approvePerson != null">approve_person = #{approvePerson},</if>
+            <if test="reportDate != null">report_date = #{reportDate},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTestReportCb09ById" parameterType="Long">
+        delete from test_report_cb09 where id = #{id}
+    </delete>
+
+    <delete id="deleteTestReportCb09ByIds" parameterType="String">
+        delete from test_report_cb09 where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shixun.zb.mapper.Sj40MainMapper">
+    
+    <resultMap type="Sj40Main" id="Sj40MainResult">
+        <result property="id"    column="id"    />
+        <result property="sgdw"    column="sgdw"    />
+        <result property="jzdw"    column="jzdw"    />
+        <result property="jldw"    column="jldw"    />
+        <result property="gcmc"    column="gcmc"    />
+        <result property="hth"    column="hth"    />
+        <result property="bh"    column="bh"    />
+        <result property="gcbw"    column="gcbw"    />
+        <result property="gjmc"    column="gjmc"    />
+        <result property="gjbh"    column="gjbh"    />
+        <result property="hjff"    column="hjff"    />
+        <result property="jtxs"    column="jtxs"    />
+        <result property="hjwd"    column="hjwd"    />
+        <result property="xdsd"    column="xdsd"    />
+        <result property="sgy"    column="sgy"    />
+        <result property="zygcs"    column="zygcs"    />
+        <result property="cjsj"    column="cjsj"    />
+    </resultMap>
+
+    <resultMap id="Sj40MainSj40DetailResult" type="Sj40Main" extends="Sj40MainResult">
+        <collection property="sj40DetailList" ofType="Sj40Detail" column="id" select="selectSj40DetailList" />
+    </resultMap>
+
+    <resultMap type="Sj40Detail" id="Sj40DetailResult">
+        <result property="id"    column="id"    />
+        <result property="mainId"    column="main_id"    />
+        <result property="hfbh"    column="hfbh"    />
+        <result property="hdxh"    column="hdxh"    />
+        <result property="yrwd"    column="yrwd"    />
+        <result property="cjwd"    column="cjwd"    />
+        <result property="hjcl"    column="hjcl"    />
+        <result property="dl"    column="dl"    />
+        <result property="dy"    column="dy"    />
+        <result property="cs"    column="cs"    />
+        <result property="hgbh"    column="hgbh"    />
+        <result property="czsj"    column="czsj"    />
+    </resultMap>
+
+    <sql id="selectSj40MainVo">
+        select id, sgdw, jzdw, jldw, gcmc, hth, bh, gcbw, gjmc, gjbh, hjff, jtxs, hjwd, xdsd, sgy, zygcs, cjsj from sj40_main
+    </sql>
+
+    <select id="selectSj40MainList" parameterType="Sj40Main" resultMap="Sj40MainResult">
+        <include refid="selectSj40MainVo"/>
+        <where>  
+            <if test="sgdw != null  and sgdw != ''"> and sgdw = #{sgdw}</if>
+            <if test="jzdw != null  and jzdw != ''"> and jzdw = #{jzdw}</if>
+            <if test="jldw != null  and jldw != ''"> and jldw = #{jldw}</if>
+            <if test="gcmc != null  and gcmc != ''"> and gcmc = #{gcmc}</if>
+            <if test="hth != null  and hth != ''"> and hth = #{hth}</if>
+            <if test="bh != null  and bh != ''"> and bh = #{bh}</if>
+            <if test="gcbw != null  and gcbw != ''"> and gcbw = #{gcbw}</if>
+            <if test="gjmc != null  and gjmc != ''"> and gjmc = #{gjmc}</if>
+            <if test="gjbh != null  and gjbh != ''"> and gjbh = #{gjbh}</if>
+            <if test="hjff != null  and hjff != ''"> and hjff = #{hjff}</if>
+            <if test="jtxs != null  and jtxs != ''"> and jtxs = #{jtxs}</if>
+            <if test="hjwd != null "> and hjwd = #{hjwd}</if>
+            <if test="xdsd != null "> and xdsd = #{xdsd}</if>
+            <if test="sgy != null  and sgy != ''"> and sgy = #{sgy}</if>
+            <if test="zygcs != null  and zygcs != ''"> and zygcs = #{zygcs}</if>
+            <if test="cjsj != null "> and cjsj = #{cjsj}</if>
+        </where>
+    </select>
+    
+    <select id="selectSj40MainById" parameterType="Long" resultMap="Sj40MainSj40DetailResult">
+        select id, sgdw, jzdw, jldw, gcmc, hth, bh, gcbw, gjmc, gjbh, hjff, jtxs, hjwd, xdsd, sgy, zygcs, cjsj
+        from sj40_main
+        where id = #{id}
+    </select>
+
+    <select id="selectSj40DetailList" resultMap="Sj40DetailResult">
+        select id, main_id, hfbh, hdxh, yrwd, cjwd, hjcl, dl, dy, cs, hgbh, czsj
+        from sj40_detail
+        where main_id = #{main_id}
+    </select>
+
+    <insert id="insertSj40Main" parameterType="Sj40Main" useGeneratedKeys="true" keyProperty="id">
+        insert into sj40_main
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sgdw != null">sgdw,</if>
+            <if test="jzdw != null">jzdw,</if>
+            <if test="jldw != null">jldw,</if>
+            <if test="gcmc != null">gcmc,</if>
+            <if test="hth != null">hth,</if>
+            <if test="bh != null">bh,</if>
+            <if test="gcbw != null">gcbw,</if>
+            <if test="gjmc != null">gjmc,</if>
+            <if test="gjbh != null">gjbh,</if>
+            <if test="hjff != null">hjff,</if>
+            <if test="jtxs != null">jtxs,</if>
+            <if test="hjwd != null">hjwd,</if>
+            <if test="xdsd != null">xdsd,</if>
+            <if test="sgy != null">sgy,</if>
+            <if test="zygcs != null">zygcs,</if>
+            <if test="cjsj != null">cjsj,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sgdw != null">#{sgdw},</if>
+            <if test="jzdw != null">#{jzdw},</if>
+            <if test="jldw != null">#{jldw},</if>
+            <if test="gcmc != null">#{gcmc},</if>
+            <if test="hth != null">#{hth},</if>
+            <if test="bh != null">#{bh},</if>
+            <if test="gcbw != null">#{gcbw},</if>
+            <if test="gjmc != null">#{gjmc},</if>
+            <if test="gjbh != null">#{gjbh},</if>
+            <if test="hjff != null">#{hjff},</if>
+            <if test="jtxs != null">#{jtxs},</if>
+            <if test="hjwd != null">#{hjwd},</if>
+            <if test="xdsd != null">#{xdsd},</if>
+            <if test="sgy != null">#{sgy},</if>
+            <if test="zygcs != null">#{zygcs},</if>
+            <if test="cjsj != null">#{cjsj},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSj40Main" parameterType="Sj40Main">
+        update sj40_main
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sgdw != null">sgdw = #{sgdw},</if>
+            <if test="jzdw != null">jzdw = #{jzdw},</if>
+            <if test="jldw != null">jldw = #{jldw},</if>
+            <if test="gcmc != null">gcmc = #{gcmc},</if>
+            <if test="hth != null">hth = #{hth},</if>
+            <if test="bh != null">bh = #{bh},</if>
+            <if test="gcbw != null">gcbw = #{gcbw},</if>
+            <if test="gjmc != null">gjmc = #{gjmc},</if>
+            <if test="gjbh != null">gjbh = #{gjbh},</if>
+            <if test="hjff != null">hjff = #{hjff},</if>
+            <if test="jtxs != null">jtxs = #{jtxs},</if>
+            <if test="hjwd != null">hjwd = #{hjwd},</if>
+            <if test="xdsd != null">xdsd = #{xdsd},</if>
+            <if test="sgy != null">sgy = #{sgy},</if>
+            <if test="zygcs != null">zygcs = #{zygcs},</if>
+            <if test="cjsj != null">cjsj = #{cjsj},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSj40MainById" parameterType="Long">
+        delete from sj40_main where id = #{id}
+    </delete>
+
+    <delete id="deleteSj40MainByIds" parameterType="String">
+        delete from sj40_main where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+    <delete id="deleteSj40DetailByMainIds" parameterType="String">
+        delete from sj40_detail where main_id in 
+        <foreach item="mainId" collection="array" open="(" separator="," close=")">
+            #{mainId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteSj40DetailByMainId" parameterType="Long">
+        delete from sj40_detail where main_id = #{mainId}
+    </delete>
+
+    <insert id="batchSj40Detail">
+        insert into sj40_detail( id, main_id, hfbh, hdxh, yrwd, cjwd, hjcl, dl, dy, cs, hgbh, czsj) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            ( #{item.id}, #{item.mainId}, #{item.hfbh}, #{item.hdxh}, #{item.yrwd}, #{item.cjwd}, #{item.hjcl}, #{item.dl}, #{item.dy}, #{item.cs}, #{item.hgbh}, #{item.czsj})
+        </foreach>
+    </insert>
+</mapper>
