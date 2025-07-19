@@ -42,3 +42,11 @@ export function delZbmain(id) {
     method: 'delete'
   })
 }
+
+export function exportEasyExcel(id) {
+  return request({
+    url: '/zbmain/zbmain/',
+    method: 'get',
+    params: {id: id}
+  })
+}

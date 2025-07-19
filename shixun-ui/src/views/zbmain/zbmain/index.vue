@@ -220,6 +220,12 @@
             @click="handleDelete(scope.row)"
             v-hasPermi="['zbmain:zbmain:remove']"
           >删除</el-button>
+          <el-button
+            v-hasPermi="['zbmain:zbmain:export']"
+            size="mini"
+            type="text"
+            @click="handleEasyExcel(scope.row)"
+          >导出excel</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -424,7 +430,7 @@
 </template>
 
 <script>
-import { listZbmain, getZbmain, delZbmain, addZbmain, updateZbmain } from "@/api/zbmain/zbmain";
+import { listZbmain, getZbmain, delZbmain, addZbmain, updateZbmain, exportEasyExcel } from "@/api/zbmain/zbmain";
 
 export default {
   name: "Zbmain",
@@ -586,6 +592,14 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
     },
+
+    handleEasyExcel(row) {
+      console.log(row)
+      exportEasyExcel(row.id).then(response =>{
+        this.$modal.msgSuccess("导出成功");
+      });
+    },
+
 	/** 主要焊缝施焊记录子表序号 */
     rowSj40DetailIndex({ row, rowIndex }) {
       row.index = rowIndex + 1;

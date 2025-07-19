@@ -2,16 +2,16 @@ package com.shixun.zb.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.enums.WriteDirectionEnum;
+import com.alibaba.excel.write.metadata.WriteSheet;
+import com.alibaba.excel.write.metadata.fill.FillConfig;
+import com.alibaba.excel.write.metadata.fill.FillWrapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.shixun.common.annotation.Log;
 import com.shixun.common.core.controller.BaseController;
 import com.shixun.common.core.domain.AjaxResult;
@@ -101,6 +101,25 @@ public class Sj40MainController extends BaseController
     {
         return toAjax(sj40MainService.deleteSj40MainByIds(ids));
     }
-    
+
+    @PreAuthorize("@ss.hasPermi('zbmain:zbmain:export')")
+    @GetMapping
+    public AjaxResult exportEasyExcel(@RequestParam Long id)
+    {
+        String templateFileName = "D:\\shixun\\myexcel\\template.xlsx";
+
+        String fileName = "D:\\shixun\\myexcel\\" + "exportTable" + System.currentTimeMillis() + ".xlsx";
+
+        Sj40Main sj40Main = sj40MainService.selectSj40MainById(id);
+
+        FillConfig fillConfig = FillConfig.builder().direction(WriteDirectionEnum.VERTICAL).build();
+
+        try(ExcelWriter excelWriter = EasyExcel.write(fileName).withTemplate(templateFileName).build()) {
+            WriteSheet writeSheet = EasyExcel.writerSheet().build();
+            excelWriter.fill(sj40Main, writeSheet);
+            excelWriter.fill(new FillWrapper("sj40DetailList", sj40Main.getSj40DetailList()), fillConfig, writeSheet);
+        }
+        return success();
+    }
 
 }
