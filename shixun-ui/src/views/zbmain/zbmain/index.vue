@@ -225,7 +225,7 @@
             size="mini"
             type="text"
             @click="handleEasyExcel(scope.row)"
-          >导出excel</el-button>
+          >导出Excel</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -483,6 +483,21 @@ export default {
       form: {},
       // 表单校验
       rules: {
+        sgdw: [
+          { required: true, message: '施工单位不能为空', trigger: 'blur' }
+        ],
+        jzdw: [
+          { required: true, message: '建造单位不能为空', trigger: 'blur' }
+        ],
+        jldw: [
+          { required: true, message: '监理单位不能为空', trigger: 'blur' }
+        ],
+        hth: [
+          { required: true, message: '合同号不能为空', trigger: 'blur' }
+        ],
+        bh: [
+          { required: true, message: '编号不能为空', trigger: 'blur' }
+        ],
       }
     };
   },

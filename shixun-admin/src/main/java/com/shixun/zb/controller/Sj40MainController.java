@@ -11,6 +11,7 @@ import com.alibaba.excel.write.metadata.fill.FillConfig;
 import com.alibaba.excel.write.metadata.fill.FillWrapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.shixun.common.annotation.Log;
 import com.shixun.common.core.controller.BaseController;
@@ -75,7 +76,7 @@ public class Sj40MainController extends BaseController
     @PreAuthorize("@ss.hasPermi('zbmain:zbmain:add')")
     @Log(title = "主要焊缝施焊记录主表", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody Sj40Main sj40Main)
+    public AjaxResult add(@Validated @RequestBody Sj40Main sj40Main)
     {
         return toAjax(sj40MainService.insertSj40Main(sj40Main));
     }
@@ -86,7 +87,7 @@ public class Sj40MainController extends BaseController
     @PreAuthorize("@ss.hasPermi('zbmain:zbmain:edit')")
     @Log(title = "主要焊缝施焊记录主表", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody Sj40Main sj40Main)
+    public AjaxResult edit(@Validated @RequestBody Sj40Main sj40Main)
     {
         return toAjax(sj40MainService.updateSj40Main(sj40Main));
     }

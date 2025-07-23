@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.shixun.common.annotation.Excel;
 import com.shixun.common.core.domain.BaseEntity;
+import javax.validation.constraints.NotBlank;
 
 /**
  * 主要焊缝施焊记录主表对象 sj40_main
@@ -22,26 +23,32 @@ public class Sj40Main extends BaseEntity
     private Long id;
 
     /** 施工单位 */
+    @NotBlank(message = "施工单位不能为空")
     @Excel(name = "施工单位")
     private String sgdw;
 
     /** 建造单位 */
+    @NotBlank(message = "建造单位不能为空")
     @Excel(name = "建造单位")
     private String jzdw;
 
     /** 监理单位 */
+    @NotBlank(message = "监理单位不能为空")
     @Excel(name = "监理单位")
     private String jldw;
 
     /** 工程名称 */
+
     @Excel(name = "工程名称")
     private String gcmc;
 
     /** 合同号 */
+    @NotBlank(message = "合同号不能为空")
     @Excel(name = "合同号")
     private String hth;
 
     /** 编号 */
+    @NotBlank(message = "编号不能为空")
     @Excel(name = "编号")
     private String bh;
 
