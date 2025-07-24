@@ -9,6 +9,8 @@ import com.alibaba.excel.enums.WriteDirectionEnum;
 import com.alibaba.excel.write.metadata.WriteSheet;
 import com.alibaba.excel.write.metadata.fill.FillConfig;
 import com.alibaba.excel.write.metadata.fill.FillWrapper;
+import com.shixun.common.core.domain.entity.SysUser;
+import com.shixun.common.core.domain.model.LoginUser;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -78,6 +80,9 @@ public class Sj40MainController extends BaseController
     @PostMapping
     public AjaxResult add(@Validated @RequestBody Sj40Main sj40Main)
     {
+        LoginUser loginUser = getLoginUser();
+        SysUser currentUser = loginUser.getUser();
+        sj40Main.setUserId(String.valueOf(currentUser.getUserId()));
         return toAjax(sj40MainService.insertSj40Main(sj40Main));
     }
 
@@ -89,6 +94,9 @@ public class Sj40MainController extends BaseController
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody Sj40Main sj40Main)
     {
+        LoginUser loginUser = getLoginUser();
+        SysUser currentUser = loginUser.getUser();
+        sj40Main.setUserId(String.valueOf(currentUser.getUserId()));
         return toAjax(sj40MainService.updateSj40Main(sj40Main));
     }
 

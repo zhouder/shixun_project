@@ -93,6 +93,14 @@ public class Sj40Main extends BaseEntity
     @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date cjsj;
 
+    /** 获取用户名 */
+    @Excel(name = "用户名")
+    private String userid;
+
+    /** 获取位置 */
+    @Excel(name = "位置")
+    private String postion;
+
     /** 主要焊缝施焊记录子表信息 */
     private List<Sj40Detail> sj40DetailList;
 
@@ -250,6 +258,15 @@ public class Sj40Main extends BaseEntity
         return cjsj;
     }
 
+    public void setUserId(String userid){
+        this.userid=userid;
+    }
+
+    public String getUserId(){
+        return userid;
+    }
+
+
     public List<Sj40Detail> getSj40DetailList()
     {
         return sj40DetailList;
@@ -280,6 +297,7 @@ public class Sj40Main extends BaseEntity
             .append("sgy", getSgy())
             .append("zygcs", getZygcs())
             .append("cjsj", getCjsj())
+            .append("userid", getUserId())
             .append("sj40DetailList", getSj40DetailList())
             .toString();
     }
