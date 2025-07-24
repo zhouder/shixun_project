@@ -98,8 +98,8 @@ public class Sj40Main extends BaseEntity
     private String userid;
 
     /** 获取位置 */
-    @Excel(name = "位置")
-    private String postion;
+    @Excel(name = "位置信息")
+    private String position;
 
     /** 主要焊缝施焊记录子表信息 */
     private List<Sj40Detail> sj40DetailList;
@@ -266,6 +266,14 @@ public class Sj40Main extends BaseEntity
         return userid;
     }
 
+    public void setPosition(String position){
+        this.position=position;
+    }
+
+    public String getPosition(){
+        return position;
+    }
+
 
     public List<Sj40Detail> getSj40DetailList()
     {
@@ -298,6 +306,7 @@ public class Sj40Main extends BaseEntity
             .append("zygcs", getZygcs())
             .append("cjsj", getCjsj())
             .append("userid", getUserId())
+            .append("position", getPosition())
             .append("sj40DetailList", getSj40DetailList())
             .toString();
     }

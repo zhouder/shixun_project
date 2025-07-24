@@ -23,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="zygcs"    column="zygcs"    />
         <result property="cjsj"    column="cjsj"    />
         <result property="userid"    column="userid"    />
+        <result property="position"    column="position"    />
         
     </resultMap>
 
@@ -46,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectSj40MainVo">
-        select id, sgdw, jzdw, jldw, gcmc, hth, bh, gcbw, gjmc, gjbh, hjff, jtxs, hjwd, xdsd, sgy, zygcs, cjsj, userid from sj40_main
+        select id, sgdw, jzdw, jldw, gcmc, hth, bh, gcbw, gjmc, gjbh, hjff, jtxs, hjwd, xdsd, sgy, zygcs, cjsj, userid, position from sj40_main
     </sql>
 
     <select id="selectSj40MainList" parameterType="Sj40Main" resultMap="Sj40MainResult">
@@ -69,11 +70,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="zygcs != null  and zygcs != ''"> and zygcs = #{zygcs}</if>
             <if test="cjsj != null "> and cjsj = #{cjsj}</if>
             <if test="userid != null "> and userid = #{userid}</if>
+            <if test="position != null "> and position = #{position}</if>
         </where>
     </select>
     
     <select id="selectSj40MainById" parameterType="Long" resultMap="Sj40MainSj40DetailResult">
-        select id, sgdw, jzdw, jldw, gcmc, hth, bh, gcbw, gjmc, gjbh, hjff, jtxs, hjwd, xdsd, sgy, zygcs, cjsj, userid
+        select id, sgdw, jzdw, jldw, gcmc, hth, bh, gcbw, gjmc, gjbh, hjff, jtxs, hjwd, xdsd, sgy, zygcs, cjsj, userid, position
         from sj40_main
         where id = #{id}
     </select>
@@ -104,6 +106,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="zygcs != null">zygcs,</if>
             <if test="cjsj != null">cjsj,</if>
             <if test="userid != null">userid,</if>
+            <if test="position != null">position,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sgdw != null">#{sgdw},</if>
@@ -123,6 +126,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="zygcs != null">#{zygcs},</if>
             <if test="cjsj != null">#{cjsj},</if>
             <if test="userid != null">#{userid},</if>
+            <if test="position != null">#{position},</if>
          </trim>
     </insert>
 
@@ -146,6 +150,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="zygcs != null">zygcs = #{zygcs},</if>
             <if test="cjsj != null">cjsj = #{cjsj},</if>
             <if test="userid != null">userid = #{userid},</if>
+            <if test="position != null">position = #{position},</if>
         </trim>
         where id = #{id}
     </update>

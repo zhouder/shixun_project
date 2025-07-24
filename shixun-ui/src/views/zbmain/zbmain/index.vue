@@ -129,10 +129,18 @@
           placeholder="请选择创建时间">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="用户名" prop="userid">
+      <el-form-item label="采集人员编号" prop="userid">
         <el-input
           v-model="queryParams.userid"
-          placeholder="请输入用户名"
+          placeholder="请输入采集人员编号"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="位置信息" prop="position">
+        <el-input
+          v-model="queryParams.position"
+          placeholder="请输入位置信息"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -212,7 +220,8 @@
           <span>{{ parseTime(scope.row.cjsj, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="用户名" align="center" prop="userId" />
+      <el-table-column label="采集人员编号" align="center" prop="userId" />
+      <el-table-column label="位置信息" align="center" prop="position" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -498,6 +507,7 @@ export default {
         zygcs: null,
         cjsj: null,
         userid: null,
+        position: null,
 
       },
       // 表单参数
@@ -561,6 +571,7 @@ export default {
         zygcs: null,
         cjsj: null,
         userid: null,
+        position: null,
       };
       this.sj40DetailList = [];
       this.resetForm("form");
