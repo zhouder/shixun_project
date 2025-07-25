@@ -53,12 +53,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectSj40MainList" parameterType="Sj40Main" resultMap="Sj40MainResult">
         <include refid="selectSj40MainVo"/>
         <where>  
-            <if test="sgdw != null  and sgdw != ''"> and sgdw = #{sgdw}</if>
-            <if test="jzdw != null  and jzdw != ''"> and jzdw = #{jzdw}</if>
-            <if test="jldw != null  and jldw != ''"> and jldw = #{jldw}</if>
+            <if test="sgdw != null  and sgdw != ''"> and sgdw like concat('%', #{sgdw}, '%') </if>
+            <if test="jzdw != null  and jzdw != ''"> and jzdw like concat('%', #{jzdw}, '%')}</if>
+            <if test="jldw != null  and jldw != ''"> and jldw like concat('%', #{jldw}, '%')</if>
             <if test="gcmc != null  and gcmc != ''"> and gcmc = #{gcmc}</if>
-            <if test="hth != null  and hth != ''"> and hth = #{hth}</if>
-            <if test="bh != null  and bh != ''"> and bh = #{bh}</if>
+            <if test="hth != null  and hth != ''"> and hth like concat('%', #{hth}, '%')</if>
+            <if test="bh != null  and bh != ''"> and bh like concat('%', #{bh}, '%')</if>
             <if test="gcbw != null  and gcbw != ''"> and gcbw = #{gcbw}</if>
             <if test="gjmc != null  and gjmc != ''"> and gjmc = #{gjmc}</if>
             <if test="gjbh != null  and gjbh != ''"> and gjbh = #{gjbh}</if>
